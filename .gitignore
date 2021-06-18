@@ -1,0 +1,7 @@
+tmp/
+alice/tmp/
+alice/node_modules/
+alice/log
+bob/tmp/
+bob/node_modules
+bob/log
