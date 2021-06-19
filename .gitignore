@@ -5,3 +5,5 @@ alice/log
 bob/tmp/
 bob/node_modules
 bob/log
+bob/**/*.swp
+bob/.DS_Store

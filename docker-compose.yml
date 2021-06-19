@@ -85,3 +85,17 @@ services:
     depends_on:
       - app_db
       - app_redis
+  bob_test:
+    image: alice_bob_test_bob
+    volumes:
+      - ./bob:/var/app
+      - ./tmp/gems:/bundle/vendor
+    ports:
+      - 3011:3000
+    stdin_open: true
+    tty: true
+    env_file: .env.test
+    entrypoint: test-entrypoint.sh
+    command: ["rails", "-v"]
+    depends_on:
+      - app_db
