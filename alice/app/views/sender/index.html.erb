@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Sender</h1>
+
+<%-if @stats.any? %>
+<p><%= @stats %></p>
+<%= link_to 'Stop', sender_delete_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%-else%>
+<%= form_with(url: sender_create_path) do |form| %>
+  <div class="field">
+    <%= form.label :interval %>
+    <%= form.number_field :interval %>
+  </div>
+
+  <div class="field">
+    <%= form.label :maxcount %>
+    <%= form.number_field :maxcount %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Start" %>
+  </div>
+<% end %>
+<%-end%>
+
+
+
