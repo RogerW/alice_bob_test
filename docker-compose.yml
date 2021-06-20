@@ -6,6 +6,8 @@ services:
     command: redis-server
     volumes:
       - ./tmp/redis:/var/shared/redis
+    ports:
+      - 6379:6379
   app_db:
     image: postgres:12.5-alpine
     volumes:
@@ -56,6 +58,23 @@ services:
       - app_db
       - bob
       - app_redis
+  alice_sidekiq:
+    image: alice_bob_test_alice
+    volumes:
+      - ./alice:/var/app
+      - ./tmp/gems:/bundle/vendor
+    ports:
+      - 3003:3000
+    stdin_open: true
+    tty: true
+    env_file: .env.dev
+    entrypoint: ["dev-entrypoint.sh"]
+    command: ["bundle", "exec", "sidekiq"]
+    depends_on:
+      - app_db
+      - bob
+      - app_redis
+      - alice
   pgadmin:
     image: dpage/pgadmin4:5
     restart: always
