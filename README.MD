@@ -17,3 +17,7 @@
 * docker-compose run bob_test cucumber
 
 * docker-compose run alice_test cucumber
+
+
+**Alice** 127.0.0.1:3000
+**Bob** 127.0.0.1:3010/messages 
